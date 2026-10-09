@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Default configuration for upscale.py (glass print upscaling).
+
+  Precedence:  command line flag  beats  this file  beats  built-in fallback
+  Use a different file via the "config" command line flag.
+
+  Target size: set EXACTLY ONE of <height_cm>, <width_cm> or <long_edge>.
+  Setting more than one is an error.
+-->
+<upscale>
+
+  <!-- Input image. <input> is a filename looked up inside <input_dir>.
+       Leave <input> empty to auto-pick the only image in <input_dir>. -->
+  <input>Liane.png</input>
+  <input_dir>in-image</input_dir>
+
+  <!-- Output. Leave <output_dir> empty to use the out-image/ folder. -->
+  <output_dir></output_dir>
+  <!-- <prefix> empty -> use the input filename stem (e.g. "Liane"). -->
+  <prefix></prefix>
+
+  <!-- Target print size: 100 cm (1 m) tall by default. -->
+  <height_cm>100</height_cm>
+  <!-- <width_cm>120</width_cm> -->
+  <!-- <long_edge>14170</long_edge> -->
+
+  <dpi>300</dpi>
+
+  <!-- RGB fill for transparent areas (comma-separated). 255,255,255 = white. -->
+  <background>255,255,255</background>
+
+  <!-- Print-optimised enhancement. -->
+  <contrast>1.08</contrast>
+  <color>1.03</color>
+
+  <!-- Output sharpening (UnsharpMask, applied last at full resolution).
+       amount = strength in percent (0 disables sharpening)
+       radius = px; 0 means auto-scale from the enlargement factor
+       threshold = ignore low-contrast areas (protects skies / flat fills) -->
+  <sharpen_amount>80</sharpen_amount>
+  <sharpen_radius>0</sharpen_radius>
+  <sharpen_threshold>3</sharpen_threshold>
+
+  <smooth>false</smooth>
+
+  <!-- Embed an sRGB colour profile when the source has none. -->
+  <embed_srgb>true</embed_srgb>
+
+  <!-- Safety cap on total output pixels. -->
+  <max_pixels>900000000</max_pixels>
+
+</upscale>
