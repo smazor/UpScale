@@ -1,0 +1,2 @@
+# UpScale
+AI Image Upscaler
