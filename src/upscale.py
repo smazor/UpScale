@@ -18,19 +18,19 @@ Configuration:
       command-line flag  >  config.xml  >  built-in fallback
   Pass --config PATH to use a different config file.
 
-Usage:
+Usage (run from the project root, or use scripts/upscale.sh from anywhere):
     # Use everything from config.xml (default input from in-image/, height 100 cm)
-    python3 upscale.py
+    python3 src/upscale.py
 
     # Pick a specific input (looked up in in-image/ if not a full path)
-    python3 upscale.py Liane.png
+    python3 src/upscale.py Liane.png
 
     # Override the print size on the command line
-    python3 upscale.py Liane.png --height-cm 150
-    python3 upscale.py Liane.png --long-edge 17700
+    python3 src/upscale.py Liane.png --height-cm 150
+    python3 src/upscale.py Liane.png --long-edge 17700
 
     # Transparent areas filled with a custom colour instead of white
-    python3 upscale.py Liane.png --background 0,0,0   # black
+    python3 src/upscale.py Liane.png --background 0,0,0   # black
 
 Target size (set exactly one; setting several is an error):
     --height-cm   physical height in cm  (default: 100 cm = 1 m)
@@ -54,7 +54,7 @@ from PIL import Image, ImageFilter, ImageEnhance, ImageOps
 # Paths & defaults
 # ---------------------------------------------------------------------------
 
-PROJECT_ROOT = Path(__file__).parent.resolve()    # repository root (script lives here)
+PROJECT_ROOT = Path(__file__).resolve().parent.parent   # repository root (script lives in src/)
 DEFAULT_CONFIG = PROJECT_ROOT / "config.xml"
 DEFAULT_OUTPUT_DIR = PROJECT_ROOT / "out-image"
 
@@ -68,7 +68,7 @@ SIZE_KEYS = ("long_edge", "height_cm", "width_cm")
 DEFAULTS = {
     "input": None,             # filename; None -> auto-pick from input_dir
     "input_dir": "in-image",   # where inputs live (relative to project root)
-    "output_dir": None,        # None -> the out-image/ folder next to this script
+    "output_dir": None,        # None -> the project's out-image/ folder
     "prefix": None,            # None -> input filename stem
     "background": "255,255,255",
     "long_edge": None,         # px

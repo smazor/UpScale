@@ -19,7 +19,9 @@ pip install -r requirements.txt
 
 ## Project layout
 
-- `upscale.py` — the upscaling script (project root)
+- `src/upscale.py` — the upscaling program
+- `scripts/upscale.sh` — launcher that uses the project's `.venv`, so it works
+  from any directory (`scripts/upscale.sh Liane.png --height-cm 80`)
 - `config.xml` — default parameters (edit this instead of typing flags)
 - `in-image/` — put source images here (default input location); subfolders
   such as `in-image/sagi/` are fine, see "Working with subfolders" below
@@ -41,17 +43,18 @@ file with `--config path/to/file.xml`.
 
 ## Usage
 
-Run from the repository root. With no arguments it uses everything in
-`config.xml`:
+Run from the repository root, or call `scripts/upscale.sh` from anywhere (it
+takes the same arguments and picks up the `.venv` automatically). With no
+arguments it uses everything in `config.xml`:
 
 ```bash
-python3 upscale.py
+python3 src/upscale.py
 ```
 
 Override the input (a bare filename is looked up inside `in-image/`):
 
 ```bash
-python3 upscale.py Shai.png
+python3 src/upscale.py Shai.png
 ```
 
 ### Target size (set exactly one)
@@ -99,7 +102,7 @@ be taller than 150 cm.
 ### Example
 
 ```bash
-python3 upscale.py Liane.png --height-cm 150 --background 0,0,0
+python3 src/upscale.py Liane.png --height-cm 150 --background 0,0,0
 ```
 
 ### Working with subfolders
@@ -109,8 +112,8 @@ is run like this, with each image given its own size and the results sent to a
 matching output folder:
 
 ```bash
-python3 upscale.py woman.png --input-dir in-image/New-Art --width-cm 150 --output-dir out-image/New-Art
-python3 upscale.py house.png --input-dir in-image/New-Art --height-cm 60  --output-dir out-image/New-Art
+python3 src/upscale.py woman.png --input-dir in-image/New-Art --width-cm 150 --output-dir out-image/New-Art
+python3 src/upscale.py house.png --input-dir in-image/New-Art --height-cm 60  --output-dir out-image/New-Art
 ```
 
 If you give no input at all, the script auto-picks the image in the input

@@ -4,7 +4,7 @@
 
 Prepare artwork for large-format glass print production.
 Source files: `in-image/` (e.g. `Liane.png` — 1074×944 px, RGBA).
-Script:       `upscale.py` (project root)
+Script:       `src/upscale.py` (launcher: `scripts/upscale.sh`, works from any directory)
 Config:       `config.xml` (project root — default parameters)
 Outputs:      `out-image/` — TIFF (print-lab), PNG (preview), ZIP (package)
 
@@ -14,17 +14,17 @@ Outputs:      `out-image/` — TIFF (print-lab), PNG (preview), ZIP (package)
 
 ```bash
 # Use everything from config.xml (input Liane.png, 100 cm / 1 m tall at 300 DPI)
-python3 upscale.py
+python3 src/upscale.py
 
 # Pick a specific input (a bare name is looked up inside in-image/)
-python3 upscale.py Shai.png
+python3 src/upscale.py Shai.png
 
 # Override the print size on the command line
-python3 upscale.py Liane.png --height-cm 150
-python3 upscale.py Liane.png --long-edge 17700
+python3 src/upscale.py Liane.png --height-cm 150
+python3 src/upscale.py Liane.png --long-edge 17700
 
 # Custom background for transparent areas (default: white)
-python3 upscale.py Liane.png --background 0,0,0
+python3 src/upscale.py Liane.png --background 0,0,0
 ```
 
 ---
